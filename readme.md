@@ -124,24 +124,6 @@ All code is open-source under MIT License — modifications must retain attribut
 Luíza Porto Ramos -http://lattes.cnpq.br/3791451608675354— pela orientação acadêmica e revisão metodológica
 Russell & Norvig — pelo ambiente Wumpus World como benchmark clássico de IA
 
-# src/generate_demo_gif.py
-from src.wumpus_world import WumpusWorld
-from src.agents.rag_agent import RAGAgent
-import imageio
-
-frames = []
-world = WumpusWorld(seed=42)
-agent = RAGAgent()
-
-for _ in range(20):
-    world.render_to_image("temp.png")
-    frames.append(imageio.imread("temp.png"))
-    perception = world.get_perception()
-    action = agent.decide(perception)
-    world.execute_action(action)
-
-imageio.mimsave("assets/demo.gif", frames, fps=2)
-
 
 
 

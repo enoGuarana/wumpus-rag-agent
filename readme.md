@@ -33,31 +33,28 @@ To determine whether modern LLM-augmented agents (RAG) can match or surpass clas
 
 ## 🏗️ System Architecture / Arquitetura do Sistema
 wumpus-comparative-analysis/
+## 🏗️ System Architecture
 
-├── src/
-│   ├── wumpus_world.py          # Environment implementation (Russell & Norvig)
-│   ├── agents/
-│   │   ├── base_agent.py        # Abstract agent interface
-│   │   ├── logic_agent.py       # Propositional logic agent (Horn clauses)
-│   │   └── rag_agent.py         # RAG agent (LLM + vector retrieval)
-│   ├── knowledge_base/
-│   │   ├── logic_rules.py       # First-order logic rules
-│   │   └── rag_facts.md         # Natural language knowledge base
-│   └── evaluation.py            # Metrics collection & statistical analysis
-├── notebooks/
-│   ├── demo.ipynb               # Interactive demo (Colab-ready)
-│   └── results_analysis.ipynb   # Statistical comparison of agents
-├── experiments/
-│   ├── map_variations/          # 10 modified maps for robustness testing
-│   └── raw_results/             # CSV files with raw metrics
-├── docs/
-│   ├── methodology.md           # Detailed experimental methodology
-│   ├── results.md               # Quantitative & qualitative findings
-│   └── references.bib           # Bibliography (BibTeX)
-├── requirements.txt             # Python dependencies
-├── LICENSE                      # MIT License
-└── README.md                    # This file
+### Overall Workflow
 
+```mermaid
+flowchart TD
+    A[Wumpus World<br>Environment] --> B{Agent Selector}
+    B --> C[Propositional Logic Agent]
+    B --> D[RAG Agent]
+    
+    C --> E[Knowledge Base:<br>Horn Clauses & Rules]
+    E --> F[Inference Engine:<br>Forward/Backward Chaining]
+    F --> G[Action: Forward/Turn/Shoot/Grab]
+    
+    D --> H[Knowledge Base:<br>Natural Language Facts]
+    H --> I[Vector Store<br>+ Embeddings]
+    I --> J[LLM<br>+ Retrieval]
+    J --> K[Action + Explanation<br>in Natural Language]
+    
+    G --> L[Environment Update]
+    K --> L
+    L --> A
 
 ## 📊 Evaluation Metrics / Métricas de Avaliação
 

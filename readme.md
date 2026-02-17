@@ -32,29 +32,46 @@ To determine whether modern LLM-augmented agents (RAG) can match or surpass clas
 ---
 
 ## 🏗️ System Architecture / Arquitetura do Sistema
-wumpus-comparative-analysis/
 ## 🏗️ System Architecture
 
-### Overall Workflow
+### 3.1 High-Level Overview
+
+O sistema implementa dois agentes distintos que interagem com o mesmo ambiente Wumpus World, permitindo comparação controlada de desempenho:
 
 ```mermaid
 flowchart TD
-    A[Wumpus World<br>Environment] --> B{Agent Selector}
-    B --> C[Propositional Logic Agent]
-    B --> D[RAG Agent]
+    E[Wumpus World<br>Environment] --> P[Perception Module]
+    P --> A{Agent Router}
     
-    C --> E[Knowledge Base:<br>Horn Clauses & Rules]
-    E --> F[Inference Engine:<br>Forward/Backward Chaining]
-    F --> G[Action: Forward/Turn/Shoot/Grab]
+    subgraph Agents [Agent Implementations]
+        direction LR
+        L[Propositional Logic Agent]
+        R[RAG Agent]
+    end
     
-    D --> H[Knowledge Base:<br>Natural Language Facts]
-    H --> I[Vector Store<br>+ Embeddings]
-    I --> J[LLM<br>+ Retrieval]
-    J --> K[Action + Explanation<br>in Natural Language]
+    A --> L
+    A --> R
     
-    G --> L[Environment Update]
-    K --> L
-    L --> A
+    L --> K1[Logic Knowledge Base<br>Horn Clauses + Rules]
+    R --> K2[RAG Knowledge Base<br>NL Facts + Vector Store]
+    
+    K1 --> I1[Inference Engine<br>Resolution + Chaining]
+    K2 --> I2[Retrieval + LLM<br>Embeddings + Generation]
+    
+    I1 --> D1[Action Decision<br>+ Belief Update]
+    I2 --> D2[Action Decision<br>+ Natural Language Explanation]
+    
+    D1 --> U[Environment Update]
+    D2 --> U
+    U --> E
+    
+    classDef agent fill:#e1f5fe,stroke:#01579b
+    classDef kb fill:#e8f5e8,stroke:#1b5e20
+    classDef env fill:#fff3e0,stroke:#e65100
+    
+    class L,R agent
+    class K1,K2 kb
+    class E,P,U env
 
 ## 📊 Evaluation Metrics / Métricas de Avaliação
 

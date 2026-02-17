@@ -32,46 +32,7 @@ To determine whether modern LLM-augmented agents (RAG) can match or surpass clas
 ---
 
 ## 🏗️ System Architecture / Arquitetura do Sistema
-## 🏗️ System Architecture
 
-### 3.1 High-Level Overview
-
-O sistema implementa dois agentes distintos que interagem com o mesmo ambiente Wumpus World, permitindo comparação controlada de desempenho:
-
-```mermaid
-flowchart TD
-    E[Wumpus World<br>Environment] --> P[Perception Module]
-    P --> A{Agent Router}
-    
-    subgraph Agents [Agent Implementations]
-        direction LR
-        L[Propositional Logic Agent]
-        R[RAG Agent]
-    end
-    
-    A --> L
-    A --> R
-    
-    L --> K1[Logic Knowledge Base<br>Horn Clauses + Rules]
-    R --> K2[RAG Knowledge Base<br>NL Facts + Vector Store]
-    
-    K1 --> I1[Inference Engine<br>Resolution + Chaining]
-    K2 --> I2[Retrieval + LLM<br>Embeddings + Generation]
-    
-    I1 --> D1[Action Decision<br>+ Belief Update]
-    I2 --> D2[Action Decision<br>+ Natural Language Explanation]
-    
-    D1 --> U[Environment Update]
-    D2 --> U
-    U --> E
-    
-    classDef agent fill:#e1f5fe,stroke:#01579b
-    classDef kb fill:#e8f5e8,stroke:#1b5e20
-    classDef env fill:#fff3e0,stroke:#e65100
-    
-    class L,R agent
-    class K1,K2 kb
-    class E,P,U env
 
 ## 📊 Evaluation Metrics / Métricas de Avaliação
 
@@ -140,34 +101,26 @@ wumpus-comparative-analysis/
 └── README.md                    # This file
 
 🎥 Demo / Demonstração
+----
 
 Agent RAG explicando sua decisão em linguagem natural enquanto navega pelo ambiente
+
 📚 References / Referências
 Russell, S., & Norvig, P. (2021). Artificial Intelligence: A Modern Approach (4th ed.). Pearson.
 (Capítulo 7: Logical Agents; Capítulo 12: Knowledge Representation)
+
 Lewis, P., et al. (2020). Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks. Advances in Neural Information Processing Systems 33 (NeurIPS 2020).
+
 Genesereth, M. R., & Nilsson, N. J. (1987). Logical Foundations of Artificial Intelligence. Morgan Kaufmann.
-Vaswani, A., et al. (2017). Attention Is All You Need. Advances in Neural Information Processing Systems 30.
-📄 Academic Information / Informações Acadêmicas
-Field
-Information
-Course
-[Nome do Curso de Graduação]
-Institution
-[Nome da Universidade]
-Period
-[Semestre/Ano - Ex: 2025/2]
-Advisor
-[Nome do Orientador, Titulação]
-Keywords
+Vaswani, A., et al. (2017).
+
 RAG, Symbolic AI, Wumpus World, Knowledge Representation, LLM
 ⚠️ Ethical Considerations / Considerações Éticas
 This project is for academic research purposes only
-No real animals or humans were involved in experiments
 LLM usage complies with provider terms of service (local models preferred)
 All code is open-source under MIT License — modifications must retain attribution
+
 🤝 Acknowledgments / Agradecimentos
-Corpo de Bombeiros do [Estado] — pelo apoio institucional ao projeto Cão Guia
 Luíza Porto Ramos -http://lattes.cnpq.br/3791451608675354— pela orientação acadêmica e revisão metodológica
 Russell & Norvig — pelo ambiente Wumpus World como benchmark clássico de IA
 

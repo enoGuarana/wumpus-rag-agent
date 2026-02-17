@@ -33,6 +33,7 @@ To determine whether modern LLM-augmented agents (RAG) can match or surpass clas
 
 ## 🏗️ System Architecture / Arquitetura do Sistema
 wumpus-comparative-analysis/
+
 ├── src/
 │   ├── wumpus_world.py          # Environment implementation (Russell & Norvig)
 │   ├── agents/
@@ -56,6 +57,8 @@ wumpus-comparative-analysis/
 ├── requirements.txt             # Python dependencies
 ├── LICENSE                      # MIT License
 └── README.md                    # This file
+
+
 ## 📊 Evaluation Metrics / Métricas de Avaliação
 
 | Metric                     | Propositional Logic Agent | RAG Agent               | Measurement Method               |
